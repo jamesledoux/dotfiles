@@ -46,7 +46,7 @@ calc2 () # Integer-only command-line calculator
 }
 
 
-test () { echo 'scale 4; $@' ;}
+#test () { echo 'scale 4; $@' ;}
 gpgclose () { gpg -r jledoux -e $1 && shred $1 ;}
 
 alias grep='grep --color'

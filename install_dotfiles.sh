@@ -1,6 +1,7 @@
 #!/bin/bash
 
 echo "Creating Directories"
+DOT_BASE="$HOME/dotfiles"
 DOT_HOME="$HOME/dotfiles/home"
 for dir in `find $DOT_HOME -type d`; do
     new_path="${dir/$DOT_HOME/$HOME}"
@@ -21,6 +22,15 @@ for f in `find $DOT_HOME -type f ! -name '*.sw*' ! -name '*.pyc'`; do
 	ln -s "$f" "$new_file"
     fi
 done
+
+if [[ ! -f ".vim/bundle/YouCompleteMe" ]]; then
+   ln -s "$DOT_BASE/YouCompleteMe" "$HOME/.vim/bundle/YouCompleteMe"
+   cd $HOME/.vim/bundle/YouCompleteMe/
+   git submodule update --init --recursive
+   python3 install.py
+fi
+cd $DOT_HOME
+cd ..
 
 if [[ ! -f "$HOME/.ssh/id_rsa.pub" ]]; then
     echo "SSH key doesn't exist; make ssh keygen"
