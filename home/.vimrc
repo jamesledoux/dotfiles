@@ -41,3 +41,5 @@ set textwidth=140
 set expandtab
 set autoindent
 set tags=tags,./.git/tags,../.git/tags,../../.git/tags,../../../.git/tags,../../../../.git/tags,../../../../../.git/tags
+
+imap <C-Right> <C-P>
