@@ -6,7 +6,7 @@ DOT_HOME="$HOME/dotfiles/home"
 for dir in `find $DOT_HOME -type d`; do
     new_path="${dir/$DOT_HOME/$HOME}"
     if [[ ! -d "$new_path" ]]; then
-        mkdir -p "$new_path" 
+        mkdir -p "$new_path"
     fi
 done
 
@@ -23,28 +23,23 @@ for f in `find $DOT_HOME -type f ! -name '*.sw*' ! -name '*.pyc'`; do
     fi
 done
 
-if [[ ! -f ".vim/bundle/YouCompleteMe" ]]; then
-   ln -s "$DOT_BASE/YouCompleteMe" "$HOME/.vim/bundle/YouCompleteMe"
-   cd $HOME/.vim/bundle/YouCompleteMe/
-   git submodule update --init --recursive
-   python3 install.py
-fi
-cd $DOT_HOME
-cd ..
-
 if [[ ! -f "$HOME/.ssh/id_rsa.pub" ]]; then
     echo "SSH key doesn't exist; make ssh keygen"
     ssh-keygen -t rsa -b 4096
-    echo "Remeber to run 'ssh-copy-id <ssh-server>'"
+    echo "Remember to run 'ssh-copy-id <ssh-server>' to all servers to add this key"
 fi
 
 if [[ ! $(sudo grep NOPASSWD /etc/sudoers) ]]; then
     echo "$USER ALL=NOPASSWD:ALL" | sudo tee /etc/sudoers
 fi
+
 echo "APT package installation"
-
-sudo apt update
-sudo apt upgrade -y
-sudo apt -y install build-essential tree screen exuberant-ctags vim
-
-
+if [[ ! -f "$HOME/.installed_dotfiles" ]] ; then
+    touch "$HOME/.installed_dotfiles"
+    sudo apt update
+    sudo apt upgrade -y
+    sudo apt -y install build-essential tree screen exuberant-ctags vim
+    sudo apt -y install vim-python-jedi python-jedi
+    vim-addons install python-jedi
+    sudo apt -y install mlocate net-tools dnsutils
+fi

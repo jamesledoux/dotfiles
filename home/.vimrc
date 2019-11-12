@@ -10,13 +10,13 @@ set foldlevel=99
 nnoremap <space> za
 
 set runtimepath^=~/.vim/bundle/fastfold.vim
-" http://github.com/Konfekt/FastFold/blob/master/plugin/fastfold.vim  
+" http://github.com/Konfekt/FastFold/blob/master/plugin/fastfold.vim
 set runtimepath^=~/.vim/bundle/SimpylFold.vim
 " https://raw.githubusercontent.com/tmhedberg/SimpylFold/master/autoload/SimpylFold.vim
 set runtimepath^=~/.vim/bundle/fugitive.vim
 " https://raw.githubusercontent.com/tpope/vim-fugitive/master/autoload/fugitive.vim
-set runtimepath^=~/.vim/bundle/python.vim  
-" https://raw.githubusercontent.com/vim-scripts/indentpython.vim/master/indent/python.vim
+"set runtimepath^=~/.vim/bundle/python.vim
+"" https://raw.githubusercontent.com/vim-scripts/indentpython.vim/master/indent/python.vim
 
 au BufNewFile,BufRead *.py
     \ set tabstop=4 |
@@ -42,4 +42,9 @@ set expandtab
 set autoindent
 set tags=tags,./.git/tags,../.git/tags,../../.git/tags,../../../.git/tags,../../../../.git/tags,../../../../../.git/tags
 
-imap <C-Right> <C-P>
+autocmd BufWritePre *.py,*.html,*.js,*rc,.git*,*.sh %s/\s\+$//e
+" remove trailing whitespace on a line.
+
+"autocmd BufWritePre *.py,*.html,*.js,*rc %s#\($\n\s*\)\+\%$##
+" remove blank line at end of file
+autocmd BufWritePre *.py,*.html,*.js,*rc,.git*,*.sh :%s/\($\n\s*\)\+\%$//e

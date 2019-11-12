@@ -8,11 +8,14 @@
 # don't put duplicate lines in the history. See bash(1) for more options
 #export HISTCONTROL=ignoredups
 #export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
-export HISTSIZE=100000                   # big big history
-export HISTFILESIZE=100000               # big big history
+export HISTSIZE=10000000                   # big big history
+export HISTFILESIZE=10000000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
 shopt -s histreedit
 shopt -s histverify
+HISTFILE=~/.bash_unlimited_history
+HISTTIMEFORMAT="%FT%T  "
+
 
 #export GLOBIGNORE='*~:*.pyc'
 # Save and reload the history after each command finishes
@@ -89,10 +92,9 @@ fi
 # (This is no longer needed from version 0.8 of the theme engine)
 # export GTK2_RC_FILES=$HOME/.gtkrc-2.0
 
-export PATH=$PATH:$HOME/local/bin
+export PATH=$PATH:/sbin/:$HOME/local/bin:$HOME/.local/bin:/snap/bin
 export EDITOR=vi
 
 if [[ -f $HOME/.localbashrc ]]; then
     . $HOME/.localbashrc
 fi
-

@@ -58,3 +58,13 @@ alias ps?="ps aux | grep"
 alias sgoogle-chrome="sudo su webdata -c 'google-chrome --incognito --proxy-server=socks://localhost:13686' &"
 alias wvact="source /django/weron2/venv/bin/activate"
 alias vact="source /django/venv18/bin/activate"
+
+
+# https://www.circuidipity.com/bashrc/
+
+bak() { for f in "$@"; do cp "$f" "$f.$(date +%FT%H%M%S).bak"; done; }
+mostUsedCommands() { history | awk '{print $3}' | sort | uniq -c | sort -rn | head; }
+c() { cd "$@" && ls -aFlhNv --color=always; }
+md() { mkdir -p "$@" && cd "$@" || return; }
+mtg() { for f in "$@"; do mv "$f" "${f//[^a-zA-Z0-9\.\-]/_}"; done; }
+
