@@ -43,3 +43,23 @@ if [[ ! -f "$HOME/.installed_dotfiles" ]] ; then
     vim-addons install python-jedi
     sudo apt -y install mlocate net-tools dnsutils
 fi
+
+cd $HOME
+if [[ ! -f "$HOME/venv" ]]; then
+    deactivate
+    echo "Creating python2 venv"
+    pip install virtualenv
+    pip install wheel
+    $HOME/.local/bin/virtualenv -p /usr/bin/python2.7 venv
+    . $HOME/venv/bin/activate
+    pip install -r $DOT_BASE/venv/requirements.txt
+fi
+cd $HOME
+if [[ ! -f "$HOME/venv3" ]]; then
+    deactivate
+    echo "Creating python3 venv3"
+    python3 -m venv $HOME/venv3
+    pip3 install wheel
+    . $HOME/venv3/bin/activate
+    pip3 install -r $DOT_BASE/venv3/requirements.txt
+fi

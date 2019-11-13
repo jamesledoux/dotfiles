@@ -15,7 +15,7 @@ set runtimepath^=~/.vim/bundle/SimpylFold.vim
 " https://raw.githubusercontent.com/tmhedberg/SimpylFold/master/autoload/SimpylFold.vim
 set runtimepath^=~/.vim/bundle/fugitive.vim
 " https://raw.githubusercontent.com/tpope/vim-fugitive/master/autoload/fugitive.vim
-"set runtimepath^=~/.vim/bundle/python.vim
+set runtimepath^=~/.vim/bundle/python.vim
 "" https://raw.githubusercontent.com/vim-scripts/indentpython.vim/master/indent/python.vim
 
 au BufNewFile,BufRead *.py
