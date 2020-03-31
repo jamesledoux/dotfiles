@@ -95,6 +95,10 @@ fi
 export PATH=$PATH:/sbin/:$HOME/local/bin:$HOME/.local/bin:/snap/bin
 export EDITOR=vi
 
+if [[ -d $HOME/.cargo/bin ]]; then
+    export PATH=$PATH:$HOME/.cargo/bin
+fi
+
 if [[ -f $HOME/.localbashrc ]]; then
     . $HOME/.localbashrc
 fi
